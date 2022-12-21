@@ -1,0 +1,129 @@
+
+// Q1 create an abstract class pen with methods write() and refill() as abstract methods.
+//Q2  use the pen class from Q1 to create a concrete class Fountainpen with additional method changenib().
+//Q3 create a class monkey with jump() and bite() methods. create a class Human which inherits this  monkey class and implements BasicAnimal interface with eat() and sleep() methods.
+//Q4 create a class Telephone with ring(), lift(), and disconnect() methods as abstract methods. create another class SmartTelephone and demonstrate polymorphism.
+//Q5 Demonstrate Polymorphism using monkey class from Q3
+//Q6 create an interface TVremote and use it to inherit another interface SmartTvremote
+
+    abstract class pen{
+        abstract void write();
+        abstract void refill();
+    }
+
+    class Fountainpen extends pen{
+        @Override
+        void write() {
+            System.out.println("can write with pen");
+        }
+
+        @Override
+        void refill() {
+            System.out.println("pen can be refilled many times");
+        }
+        void changeNib(){
+            System.out.println("we can also chnage nib");
+        }
+    }
+
+    class Monkey{
+        void jump(){
+            System.out.println("jumping");
+        }
+        void bite(){
+            System.out.println("biting");
+        }
+    }
+
+    interface Basicanimal{
+        void eat();
+        void sleep();
+    }
+
+    class Human extends Monkey implements Basicanimal{
+
+        public void speak() {
+            System.out.println("speak");
+        }
+
+        @Override
+        public void eat() {
+            System.out.println("eating");
+        }
+        public void sleep(){
+            System.out.println("sleeping");
+        }
+    }
+    abstract class Telephone {
+        abstract void ring();
+        abstract void lift();
+        abstract void disconnect();
+    }
+
+    class SmartTelephone extends Telephone{
+        @Override
+        public void ring() {
+            System.out.println("ringing..");
+        }
+
+        @Override
+        public void disconnect() {
+            System.out.println("disconnecting..");
+        }
+
+        @Override
+        public void lift() {
+            System.out.println("lifting...");
+        }
+    }
+
+    interface TVremote{
+        void buttons();
+    }
+    interface SmartTVremote extends TVremote{
+        void touchscreen();
+
+    }
+
+    public class Abstractclass_Interfaces {
+        public static void main(String[] args) {
+     //Q1 & Q2
+        Fountainpen fn = new Fountainpen();
+        fn.changeNib();
+        fn.write();
+        fn.refill();
+
+        // Q3
+         Human sravya = new Human();
+         sravya.sleep();
+
+         //Q4
+          Telephone t1 = new SmartTelephone();
+          t1.disconnect();
+          t1.lift();
+
+          //Q5
+          Monkey m1 = new Human();
+          m1.bite();
+          Basicanimal lovish = new Human();
+          lovish.eat();
+
+          //Q6
+          SmartTVremote remote = new SmartTVremote() {
+              @Override
+              public void touchscreen() {
+                  System.out.println("smart touch");
+              }
+
+              @Override
+              public void buttons() {
+                  System.out.println("buttons");
+
+              }
+          };
+          remote.touchscreen();
+          remote.buttons();
+
+
+    }
+}
